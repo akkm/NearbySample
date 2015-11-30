@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         if (resultCode == REQUEST_RESOLVE_ERROR) {
             mResolvingError = false;
             if (resultCode == RESULT_OK) {
-                Nearby.Messages.subscribe(mGoogleApiClient, mMessageListener);
+                Nearby.Messages.subscribe(mGoogleApiClient, mMessageListener, mStrategy);
             } else {
                 Log.d(TAG, "Failed to resolve error with code " + resultCode);
             }
@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onResult(Status status) {
                     if (status.isSuccess()) {
-                        Nearby.Messages.subscribe(mGoogleApiClient, mMessageListener);
+                        Nearby.Messages.subscribe(mGoogleApiClient, mMessageListener, mStrategy);
                     } else {
                         if (status.hasResolution()) {
                             if (!mResolvingError) {
